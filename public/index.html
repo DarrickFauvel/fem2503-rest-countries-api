@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script src="/lib/htmx.min.js"></script>
+    <title>REST Countries API</title>
+</head>
+<body>
+    <h1>REST Countries API</h1>
+    <button hx-get="/data/countries.json" hx-target="#display">Get all countries</button>
+    <div id="display"></div>
+</body>
+</html>
