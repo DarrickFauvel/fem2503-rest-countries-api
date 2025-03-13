@@ -1,8 +1,8 @@
 import { CountryProps } from "@/types/country"
 
-export const CountryCard = (country: CountryProps) => {
+export const CountryItemComponent = (country: CountryProps) => {
   return (
-    <article class="dark:bg-gray-700 rounded-[5px] overflow-hidden">
+    <li class="dark:bg-gray-700 rounded-[5px] overflow-hidden">
       <div>
         <img src={country.flag} alt="" />
       </div>
@@ -23,6 +23,6 @@ export const CountryCard = (country: CountryProps) => {
           </li>
         </ul>
       </div>
-    </article>
+    </li>
   )
 }

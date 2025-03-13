@@ -1,4 +1,4 @@
-import { CountryCard } from "@/views/components/country-card"
+import { CountryItemComponent } from "@/views/components/country-item"
 import { CountryProps } from "@/types/country"
 import { Home } from "@/views/pages/Home"
 import { Hono } from "hono"
@@ -12,7 +12,9 @@ app.use("/countries.json", serveStatic({ path: "./countries.json" }))
 let allCountriesArray: CountryProps[] = []
 
 const getAllCountries = async () => {
+  console.log("Getting countries...")
   const allCountriesData = await Bun.file("./public/data/countries.json").text()
+  console.log("Parsing countries...")
   const parsedCountries = await JSON.parse(allCountriesData).map(
     ({ name, population, region, capital, flag }: CountryProps) => ({
       name,
@@ -22,6 +24,7 @@ const getAllCountries = async () => {
       flag,
     })
   )
+  console.log("Countries parsed")
   return parsedCountries
 }
 
@@ -32,10 +35,10 @@ app.get("/", (c) => {
 app.get("/api/countries", async (c) => {
   const countries =
     allCountriesArray.length < 1 ? await getAllCountries() : allCountriesArray
-  const countryCards = countries
-    .map((country: CountryProps) => CountryCard(country))
+  const countryItems = countries
+    .map((country: CountryProps) => CountryItemComponent(country))
     .join("")
-  return c.html(countryCards)
+  return c.html(`<ul class="flex flex-col gap-10 px-12">${countryItems}</ul>`)
 })
 
 // app.get("/api/country/:alpha2code", async (c) => {

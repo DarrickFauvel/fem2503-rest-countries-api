@@ -53,7 +53,7 @@ export const Home = () => {
             {SpinnerIcon()}
           </div>
 
-          <section class="flex flex-col gap-10 px-12" id="cards"></section>
+          <section id="cards"></section>
         </main>
       </body>
     </html>
