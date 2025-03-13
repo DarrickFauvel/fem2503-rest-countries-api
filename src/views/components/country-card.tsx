@@ -1,4 +1,6 @@
-export const CountryCard = (country) => {
+import { CountryProps } from "@/types/country"
+
+export const CountryCard = (country: CountryProps) => {
   return (
     <article class="dark:bg-gray-700 rounded-[5px] overflow-hidden">
       <div>

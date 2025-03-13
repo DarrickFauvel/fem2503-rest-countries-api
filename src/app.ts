@@ -1,27 +1,20 @@
+import { CountryCard } from "@/views/components/country-card"
+import { CountryProps } from "@/types/country"
+import { Home } from "@/views/pages/Home"
 import { Hono } from "hono"
 import { serveStatic } from "hono/bun"
-import { Home } from "./views/pages/Home"
-import { CountryCard } from "./views/components/country-card"
-
-type Country = {
-  name: string
-  population: string
-  region: string
-  capital: string
-  flag: string
-}
 
 const app = new Hono()
 
 app.use("/public/*", serveStatic({ root: "./" }))
 app.use("/countries.json", serveStatic({ path: "./countries.json" }))
 
-let allCountriesArray: Country[] = []
+let allCountriesArray: CountryProps[] = []
 
 const getAllCountries = async () => {
   const allCountriesData = await Bun.file("./public/data/countries.json").text()
   const parsedCountries = await JSON.parse(allCountriesData).map(
-    ({ name, population, region, capital, flag }: Country) => ({
+    ({ name, population, region, capital, flag }: CountryProps) => ({
       name,
       population,
       region,
@@ -40,7 +33,7 @@ app.get("/api/countries", async (c) => {
   const countries =
     allCountriesArray.length < 1 ? await getAllCountries() : allCountriesArray
   const countryCards = countries
-    .map((country: Country) => CountryCard(country))
+    .map((country: CountryProps) => CountryCard(country))
     .join("")
   return c.html(countryCards)
 })

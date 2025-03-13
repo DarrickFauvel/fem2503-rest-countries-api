@@ -1,7 +1,7 @@
-import { localStorageHeadScript } from "../components/localstorage-head-script"
-import { Search } from "../components/Search"
-import { svgMoonIcon } from "../components/svg-moon-icon"
-import { SvgSpinnerIcon } from "../components/svg-spinner-icon"
+import { MoonIcon } from "@/views/components/icons/moon"
+import { SearchComponent } from "@/views/components/search"
+import { SpinnerIcon } from "@/views/components/icons/spinner"
+import { localStorageHeadScript } from "@/utils/localstorage-head-script"
 
 export const Home = () => {
   return (
@@ -27,13 +27,13 @@ export const Home = () => {
             class="flex items-center gap-2 cursor-pointer"
             hx-on:click="toggleTheme()"
           >
-            {svgMoonIcon()}
+            {MoonIcon()}
             <span class="text-xs font-semibold text-nowrap">Dark Mode</span>
           </button>
         </header>
 
         <main class="px-4 py-6 flex flex-col items-center gap-8">
-          {Search()}
+          {SearchComponent()}
           <button
             class="border bg-gray-200 px-4 py-2 cursor-pointer rounded-sm hover:bg-gray-300"
             hx-get="/api/countries"
@@ -50,7 +50,7 @@ export const Home = () => {
           </button>
 
           <div id="spinner" class="htmx-indicator">
-            {SvgSpinnerIcon()}
+            {SpinnerIcon()}
           </div>
 
           <section class="flex flex-col gap-10 px-12" id="cards"></section>
