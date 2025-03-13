@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 const searchInput = document.querySelector("#search-input")
+const cardsSection = document.querySelector('#cards')
 
 function toggleTheme() {
   document.documentElement.classList.toggle("dark")
@@ -14,4 +15,8 @@ function toggleTheme() {
 
 function focusOnSearchInput() {
   searchInput.focus()
+}
+
+function clearCards() {
+  cardsSection.innerHTML = ''
 }
