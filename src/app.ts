@@ -11,13 +11,13 @@ app.use(logger())
 app.use("/public/*", serveStatic({ root: "./" }))
 app.use("/countries.json", serveStatic({ path: "./countries.json" }))
 
-let allCountriesArray: CountryProps[] = []
+const getCountries = async (region: string) => {
+  const textOfCountriesFile = await Bun.file(
+    "./public/data/countries.json"
+  ).text()
+  const countriesArray = await JSON.parse(textOfCountriesFile)
 
-const getAllCountries = async () => {
-  console.log("Getting countries...")
-  const allCountriesData = await Bun.file("./public/data/countries.json").text()
-  console.log("Parsing countries...")
-  const parsedCountries = await JSON.parse(allCountriesData).map(
+  const countries = countriesArray.map(
     ({ name, population, region, capital, flag }: CountryProps) => ({
       name,
       population,
@@ -26,8 +26,15 @@ const getAllCountries = async () => {
       flag,
     })
   )
-  console.log("Countries parsed")
-  return parsedCountries
+
+  const filteredCountries =
+    region !== ""
+      ? countries.filter(
+          (country: CountryProps) => country.region === region
+        )
+      : countries
+
+  return filteredCountries
 }
 
 app.get("/", (c) => {
@@ -35,17 +42,33 @@ app.get("/", (c) => {
 })
 
 app.get("/api/countries", async (c) => {
-  const countries =
-    allCountriesArray.length < 1 ? await getAllCountries() : allCountriesArray
+  const { region } = c.req.query()
+
+  const countries = await getCountries(region)
   const countryItems = countries
     .map((country: CountryProps) => CountryItemComponent(country))
     .join("")
+
   return c.html(`<ul class="flex flex-col gap-10 px-12">${countryItems}</ul>`)
 })
 
-// app.get("/api/country/:alpha2code", async (c) => {
-//   const { params } = c.req.param
-//   console.log(params)
+// PAGINATION
+// app.get("/api/countries", (c) => {
+//   const query = c.req.query()
+//   const page = parseInt(query.page || "1", 10)
+//   const limit = 10
+
+//   // Calculate pagination
+//   const startIndex = (page - 1) * limit
+//   const endIndex = startIndex + limit
+//   const paginatedCountries = allCountriesArray.slice(startIndex, endIndex)
+//   const countryItems = paginatedCountries
+//     .map((country: CountryProps, index) => {
+//       return CountryItemComponent(country, index)
+//     })
+//     .join("")
+
+//   return c.html(`<ul class="flex flex-col gap-10 px-12">${countryItems}</ul>`)
 // })
 
 export default app
