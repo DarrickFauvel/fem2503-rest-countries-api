@@ -5,7 +5,7 @@ export const SpinnerIcon = () => {
       width="16"
       height="16"
       viewBox="0 0 16 16"
-      class="animate-spin scale-200"
+      class="animate-spin scale-[5]"
     >
       <path
         fill="currentColor"
