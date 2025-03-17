@@ -2,10 +2,12 @@ import { CountryItemComponent } from "@/views/components/country-item"
 import { CountryProps } from "@/types/country"
 import { Home } from "@/views/pages/Home"
 import { Hono } from "hono"
+import { logger } from "hono/logger"
 import { serveStatic } from "hono/bun"
 
 const app = new Hono()
 
+app.use(logger())
 app.use("/public/*", serveStatic({ root: "./" }))
 app.use("/countries.json", serveStatic({ path: "./countries.json" }))
 
