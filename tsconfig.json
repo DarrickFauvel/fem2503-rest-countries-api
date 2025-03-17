@@ -11,8 +11,9 @@
       "types/*": ["types/*"],
       "utils/*": ["utils/*"]
     },
-    "moduleResolution": "node",
+    "moduleResolution": "node10",
     "module": "ESNext",
+    "target": "ESNext",
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true
   }
