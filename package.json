@@ -3,8 +3,9 @@
   "scripts": {
     "server": "bun run --hot src/app.ts",
     "tailwind": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css --watch",
+    "build": "npx @tailwindcss/cli -i ./public/css/input.css -o ./public/css/output.css",
     "dev": "concurrently 'bun tailwind' 'bun server'",
-    "start": "concurrently 'bun tailwind' 'bun server'"
+    "start": "bun run src/app.ts"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.0.12",
