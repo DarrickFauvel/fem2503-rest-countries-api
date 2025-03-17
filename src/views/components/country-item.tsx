@@ -1,10 +1,10 @@
 import { CountryProps } from "@/types/country"
 
 export const CountryItemComponent = (country: CountryProps) => {
-  return (
-    <li class="dark:bg-gray-700 rounded-[5px] overflow-hidden">
+  const htmlContent = (
+    <>
       <div>
-        <img src={country.flag} alt="" />
+        <img src={country.flag} alt="" loading="lazy" />
       </div>
       <div class="p-6">
         <h3 class="text-lg">{country.name}</h3>
@@ -23,6 +23,8 @@ export const CountryItemComponent = (country: CountryProps) => {
           </li>
         </ul>
       </div>
-    </li>
+    </>
   )
+
+  return `<li class="animate-fade bg-white dark:bg-gray-700 rounded-[5px] overflow-hidden shadow-(--card-shadow)">${htmlContent}</li>`
 }
