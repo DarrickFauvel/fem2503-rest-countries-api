@@ -1,9 +1,9 @@
 import { MagnifierIcon } from "@/views/components/icons/magnifier"
 
-export const SearchComponent = () => {
+export const SearchControlComponent = () => {
   return (
     <div
-      class="bg-white dark:bg-gray-700 px-8 py-4 rounded-[5px] flex gap-6 shadow-(--search-shadow)"
+      class="bg-white dark:bg-gray-700 px-8 py-4 rounded-[5px] flex gap-6 shadow-(--search-shadow) w-full"
       hx-on:click="focusOnSearchInput()"
     >
       {MagnifierIcon()}
