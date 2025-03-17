@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "src/app.ts": {
+      "runtime": "edge"
+    }
+  },
+  "routes": [{ "src": "/(.*)", "dest": "/src/app.ts" }]
+}
