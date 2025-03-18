@@ -2,19 +2,11 @@ import { CountryItemComponent } from "@/views/components/country-item"
 import { CountryProps } from "@/types/country"
 import { Home } from "@/views/pages/Home"
 import { Hono } from "hono"
-import { handle } from "hono/vercel"
 import { logger } from "hono/logger"
 import { serveStatic } from "hono/bun"
 
 const app = new Hono()
 
-const handler = handle(app)
-
-export const GET = handler
-export const POST = handler
-export const PATCH = handler
-export const PUT = handler
-export const OPTIONS = handler
 
 app.use(logger())
 app.use("/public/*", serveStatic({ root: "./" }))
