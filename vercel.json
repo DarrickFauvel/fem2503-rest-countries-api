@@ -1,8 +1,11 @@
 {
-  "functions": {
-    "src/app.ts": {
-      "runtime": "edge"
+  "rewrites": [
+    {
+      "source": "/src/(.*)",
+      "destination": "/src"
     }
-  },
-  "routes": [{ "src": "/(.*)", "dest": "/src/app.ts" }]
+  ],
+  "redirects": [
+    { "source": "/", "destination": "/src", "permanent": false }
+  ]
 }
