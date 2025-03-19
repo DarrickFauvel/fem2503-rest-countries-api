@@ -7,12 +7,17 @@ export const SearchControlComponent = () => {
       hx-on:click="focusOnSearchInput()"
     >
       {MagnifierIcon()}
-      <input
-        class="dark:placeholder:text-white focus:placeholder:opacity-40 w-full outline-0"
-        type="text"
-        placeholder="Search for a country..."
-        id="search-input"
-      />
+
+        <input
+          name="search"
+          class="dark:placeholder:text-white focus:placeholder:opacity-40 w-full outline-0"
+          type="search"
+          placeholder="Search for a country..."
+          id="search-input"
+          hx-post="/search"
+          hx-trigger="input changed delay:500ms, keyup[key=='Enter']"
+          hx-target="#results"
+        />
     </div>
   )
 }

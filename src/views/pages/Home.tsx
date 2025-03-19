@@ -34,7 +34,7 @@ export const Home = () => {
 
           {SelectControlComponent()}
 
-          <section id="cards"></section>
+          <section id="results"></section>
 
           <div id="spinner" class="htmx-indicator">
             {SpinnerIcon()}
