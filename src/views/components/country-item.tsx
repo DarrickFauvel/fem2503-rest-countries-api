@@ -2,9 +2,14 @@ import { CountryProps } from "@/types/country"
 
 export const CountryItemComponent = (country: CountryProps) => {
   const htmlContent = (
-    <>
+    <li class="animate-fade bg-(--theme-light-fg) dark:bg-(--theme-dark-bg) rounded-[5px] overflow-hidden shadow-(--card-shadow) cursor-pointer hover:outline-4 dark:hover:outline-(--theme-dark-fg) group">
       <div>
-        <img src={country.flag} alt="" loading="lazy" />
+        <img
+          class="group-hover:scale-110 transition duration-500"
+          src={country.flag}
+          alt=""
+          loading="lazy"
+        />
       </div>
       <div class="p-6">
         <h3 class="text-lg">{country.name}</h3>
@@ -23,8 +28,8 @@ export const CountryItemComponent = (country: CountryProps) => {
           </li>
         </ul>
       </div>
-    </>
+    </li>
   )
 
-  return `<li class="animate-fade bg-white dark:bg-gray-700 rounded-[5px] overflow-hidden shadow-(--card-shadow)">${htmlContent}</li>`
+  return htmlContent
 }
