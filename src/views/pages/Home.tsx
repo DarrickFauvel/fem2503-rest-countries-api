@@ -17,8 +17,8 @@ export const Home = () => {
         <title>REST Countries API</title>
       </head>
 
-      <body class="bg-zinc-100 dark:bg-gray-800 text-neutral-900 dark:text-white flex flex-col">
-        <header class="bg-white dark:bg-gray-700 flex justify-between px-4 py-8 shadow-(--header-shadow)">
+      <body class="bg-(--theme-light-bg) dark:bg-(--theme-dark-bg) text-neutral-900 dark:text-white flex flex-col">
+        <header class="bg-(--theme-light-fg) dark:bg-(--theme-dark-fg) flex justify-between px-4 py-8 shadow-(--header-shadow)">
           <h1 class="text-xl font-semibold">Where in the world?</h1>
           <button
             class="flex items-center gap-2 cursor-pointer"
