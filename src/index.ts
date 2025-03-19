@@ -7,7 +7,6 @@ import { serveStatic } from "hono/bun"
 
 const app = new Hono()
 
-
 app.use(logger())
 app.use("/public/*", serveStatic({ root: "./" }))
 app.use("/countries.json", serveStatic({ path: "./countries.json" }))
@@ -38,6 +37,42 @@ const getCountries = async (region: string) => {
 
 app.get("/", (c) => {
   return c.html(Home())
+})
+
+app.post("/search", async (c) => {
+  const formData = await c.req.formData()
+  const searchQuery = formData.get("search")
+
+  const textOfCountriesFile = await Bun.file(
+    "./public/data/countries.json"
+  ).text()
+  const countriesArray = await JSON.parse(textOfCountriesFile)
+
+  const countries =
+    countriesArray &&
+    countriesArray.map(
+      ({ name, population, region, capital, flag }: CountryProps) => ({
+        name,
+        population,
+        region,
+        capital,
+        flag,
+      })
+    )
+
+  if (typeof searchQuery === "string") {
+    const filteredCountries = countries.filter((country: CountryProps) => {
+      return country.name
+        .toLowerCase()
+        .includes(searchQuery?.toString().toLowerCase())
+    })
+
+    const countryItems = filteredCountries
+      .map((country: CountryProps) => CountryItemComponent(country))
+      .join("")
+
+    return c.html(`<ul class="flex flex-col gap-10 px-12">${countryItems}</ul>`)
+  }
 })
 
 app.get("/api/countries", async (c) => {
