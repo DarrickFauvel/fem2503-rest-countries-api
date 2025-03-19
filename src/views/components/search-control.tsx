@@ -3,7 +3,7 @@ import { MagnifierIcon } from "@/views/components/icons/magnifier"
 export const SearchControlComponent = () => {
   return (
     <div
-      class="bg-white dark:bg-gray-700 px-8 py-4 rounded-[5px] flex gap-6 shadow-(--search-shadow) w-full"
+      class="bg-(--theme-light-fg) dark:bg-(--theme-dark-fg) px-8 py-4 rounded-[5px] flex gap-6 shadow-(--search-shadow) w-full"
       hx-on:click="focusOnSearchInput()"
     >
       {MagnifierIcon()}

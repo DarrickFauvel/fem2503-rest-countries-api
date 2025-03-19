@@ -8,7 +8,7 @@ export const SelectControlComponent = () => {
   return (
     <select
       name="region"
-      class="bg-white dark:bg-gray-700 px-6 py-3.5 rounded-[5px] self-start"
+      class="bg-(--theme-light-fg) dark:bg-(--theme-dark-fg) px-6 py-3.5 rounded-[5px] self-start"
       hx-get="/api/countries"
       hx-target="#results"
       hx-trigger="revealed, change"
