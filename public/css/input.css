@@ -14,13 +14,16 @@
   --theme-light-bg: #f4f4f5;
   --theme-light-fg: #ffffff;
 
+  --animate-fade: fadeInUp 0.5s ease-in-out;
 
-  @keyframes fadeIn {
+  @keyframes fadeInUp {
     from {
       opacity: 0;
+      transform: translateY(1em);
     }
     to {
       opacity: 1;
+      transform: translateY(0);
     }
   }
 }
