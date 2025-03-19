@@ -9,7 +9,11 @@
 }
 
 @theme {
-  --animate-fade: fadeIn 0.5s ease-in-out;
+  --theme-dark-bg: #1e2939;
+  --theme-dark-fg: #364153;
+  --theme-light-bg: #f4f4f5;
+  --theme-light-fg: #ffffff;
+
 
   @keyframes fadeIn {
     from {
