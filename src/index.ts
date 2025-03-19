@@ -11,14 +11,18 @@ app.use(logger())
 app.use("/public/*", serveStatic({ root: "./" }))
 app.use("/countries.json", serveStatic({ path: "./countries.json" }))
 
-const getCountries = async (region: string) => {
+let allCountriesGlobalArray = []
+
+;(async () => {
   const textOfCountriesFile = await Bun.file(
     "./public/data/countries.json"
   ).text()
-  const countriesArray = await JSON.parse(textOfCountriesFile)
+  allCountriesGlobalArray = await JSON.parse(textOfCountriesFile)
+  console.log(
+    `${allCountriesGlobalArray.length} countries loaded into server cache`
+  )
+})()
 
-  const countries = countriesArray.map(
-    ({ name, population, region, capital, flag }: CountryProps) => ({
       name,
       population,
       region,
