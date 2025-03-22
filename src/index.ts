@@ -1,3 +1,5 @@
+import { CountryProps, CountrySummaryProps } from "@/types/country"
+
 import { CountryItemComponent } from "@/views/components/country-item"
 import { CountryProps } from "@/types/country"
 import { Home } from "@/views/pages/Home"
@@ -11,7 +13,7 @@ app.use(logger())
 app.use("/public/*", serveStatic({ root: "./" }))
 app.use("/countries.json", serveStatic({ path: "./countries.json" }))
 
-let allCountriesGlobalArray = []
+let allCountriesGlobalArray: CountryProps[] = []
 
 ;(async () => {
   const textOfCountriesFile = await Bun.file(
@@ -65,14 +67,16 @@ app.post("/search", async (c) => {
     )
 
   if (typeof searchQuery === "string") {
-    const filteredCountries = countries.filter((country: CountryProps) => {
+    const filteredCountries = countries.filter(
+      (country: CountrySummaryProps) => {
       return country.name
         .toLowerCase()
         .includes(searchQuery?.toString().toLowerCase())
-    })
+      }
+    )
 
     const countryItems = filteredCountries
-      .map((country: CountryProps) => CountryItemComponent(country))
+      .map((country: CountrySummaryProps) => CountryItemComponent(country))
       .join("")
 
     return c.html(`<ul class="flex flex-col gap-10 px-12">${countryItems}</ul>`)
