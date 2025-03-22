@@ -1,6 +1,6 @@
 import { CountryProps } from "@/types/country"
 
-export const CountryItemComponent = (country: CountryProps) => {
+export const CountryItemComponent = (country: CountrySummaryProps) => {
   const htmlContent = (
     <li class="animate-fade bg-(--theme-light-fg) dark:bg-(--theme-dark-bg) rounded-[5px] overflow-hidden shadow-(--card-shadow) cursor-pointer hover:outline-4 dark:hover:outline-(--theme-dark-fg) group">
       <div>
