@@ -1,7 +1,6 @@
 import { CountryProps, CountrySummaryProps } from "@/types/country"
 
 import { CountryItemComponent } from "@/views/components/country-item"
-import { CountryProps } from "@/types/country"
 import { Home } from "@/views/pages/Home"
 import { Hono } from "hono"
 import { logger } from "hono/logger"
@@ -15,29 +14,68 @@ app.use("/countries.json", serveStatic({ path: "./countries.json" }))
 
 let allCountriesGlobalArray: CountryProps[] = []
 
+// immediately load countries into global array
 ;(async () => {
+  console.log("LOADING countries...")
+
+  // read text of json file
   const textOfCountriesFile = await Bun.file(
     "./public/data/countries.json"
   ).text()
-  allCountriesGlobalArray = await JSON.parse(textOfCountriesFile)
+
+  // parse data from text
+  const allCountriesParsed = await JSON.parse(textOfCountriesFile)
+
+  // map only properties used into global array
+  allCountriesGlobalArray = await allCountriesParsed.map(
+    ({
+      borders,
+      capital,
+      currencies,
+      flag,
+      languages,
+      name,
+      nativeName,
+      population,
+      region,
+      subregion,
+      topLevelDomain,
+    }: CountryProps) => ({
+      borders,
+      capital,
+      currencies,
+      flag,
+      languages,
+      name,
+      nativeName,
+      population,
+      region,
+      subregion,
+      topLevelDomain,
+    })
+  )
   console.log(
-    `${allCountriesGlobalArray.length} countries loaded into server cache`
+    `LOADED ${allCountriesGlobalArray.length} countries into server cache`
   )
 })()
 
+const getCountriesByRegion = async (region: string) => {
+  // filter countries by region
+  const filteredCountriesByRegion = allCountriesGlobalArray.filter(
+    (country) => country.region === region
+  )
+
+  // create array of country summary properties
+  const filteredCountries = filteredCountriesByRegion.map(
+    ({ capital, flag, name, population, region, topLevelDomain }) => ({
+      capital,
+      flag,
       name,
       population,
       region,
-      capital,
-      flag,
+      topLevelDomain,
     })
   )
-
-  const filteredCountries =
-    region !== ""
-      ? countries.filter((country: CountryProps) => country.region === region)
-      : countries
-
   return filteredCountries
 }
 
@@ -49,29 +87,22 @@ app.post("/search", async (c) => {
   const formData = await c.req.formData()
   const searchQuery = formData.get("search")
 
-  const textOfCountriesFile = await Bun.file(
-    "./public/data/countries.json"
-  ).text()
-  const countriesArray = await JSON.parse(textOfCountriesFile)
-
-  const countries =
-    countriesArray &&
-    countriesArray.map(
-      ({ name, population, region, capital, flag }: CountryProps) => ({
-        name,
-        population,
-        region,
-        capital,
-        flag,
-      })
-    )
+  const countries = allCountriesGlobalArray.map(
+    ({ name, population, region, capital, flag }: CountrySummaryProps) => ({
+      name,
+      population,
+      region,
+      capital,
+      flag,
+    })
+  )
 
   if (typeof searchQuery === "string") {
     const filteredCountries = countries.filter(
       (country: CountrySummaryProps) => {
-      return country.name
-        .toLowerCase()
-        .includes(searchQuery?.toString().toLowerCase())
+        return country.name
+          .toLowerCase()
+          .includes(searchQuery?.toString().toLowerCase())
       }
     )
 
@@ -86,9 +117,9 @@ app.post("/search", async (c) => {
 app.get("/api/countries", async (c) => {
   const { region } = c.req.query()
 
-  const countries = await getCountries(region)
+  const countries = await getCountriesByRegion(region)
   const countryItems = countries
-    .map((country: CountryProps) => CountryItemComponent(country))
+    .map((country) => CountryItemComponent(country))
     .join("")
 
   return c.html(`<ul class="flex flex-col gap-10 px-12">${countryItems}</ul>`)
