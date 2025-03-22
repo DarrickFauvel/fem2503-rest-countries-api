@@ -8,16 +8,17 @@ export const SearchControlComponent = () => {
     >
       {MagnifierIcon()}
 
-        <input
-          name="search"
-          class="dark:placeholder:text-white focus:placeholder:opacity-40 w-full outline-0"
-          type="search"
-          placeholder="Search for a country..."
-          id="search-input"
-          hx-post="/search"
-          hx-trigger="input changed delay:500ms, keyup[key=='Enter']"
-          hx-target="#results"
-        />
+      <input
+        name="search"
+        class="dark:placeholder:text-white focus:placeholder:opacity-40 w-full outline-0"
+        type="search"
+        placeholder="Search for a country..."
+        id="search-input"
+        hx-post="/search"
+        hx-on:keyup="clearSelectControl()"
+        hx-trigger="input changed delay:500ms, keyup[key=='Enter']"
+        hx-target="#results"
+      />
     </div>
   )
 }
