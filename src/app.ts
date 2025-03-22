@@ -9,8 +9,13 @@ import { serveStatic } from "hono/bun"
 const app = new Hono()
 
 app.use(logger())
-app.use("/public/*", serveStatic({ root: "./" }))
-app.use("/countries.json", serveStatic({ path: "./countries.json" }))
+app.use("/public/*", serveStatic({ root: "./src/" }))
+// app.use(
+//   "/countries.json",
+//   serveStatic({ path: "./src/public/data/countries.json" })
+// )
+
+console.log("current directory:", import.meta.dir)
 
 let allCountriesGlobalArray: CountryProps[] = []
 
@@ -20,7 +25,7 @@ let allCountriesGlobalArray: CountryProps[] = []
 
   // read text of json file
   const textOfCountriesFile = await Bun.file(
-    "./public/data/countries.json"
+    "./src/public/data/countries.json"
   ).text()
 
   // parse data from text
