@@ -1,7 +1,7 @@
-import { CountryProps, CountrySummaryProps } from "@/types/country"
+import { CountryProps, CountrySummaryProps } from "src/models/types/country"
 
-import { CountryItemComponent } from "@/views/components/country-item"
-import { Home } from "@/views/pages/Home"
+import { CountryItemComponent } from "src/views/components/country-item"
+import { Home } from "src/views/pages/Home"
 import { Hono } from "hono"
 import { logger } from "hono/logger"
 import { serveStatic } from "hono/bun"
@@ -114,7 +114,7 @@ app.post("/search", async (c) => {
   }
 })
 
-app.get("/api/countries", async (c) => {
+app.get("/countries", async (c) => {
   const { region } = c.req.query()
 
   const countries = await getCountriesByRegion(region)

@@ -1,4 +1,4 @@
-import { MagnifierIcon } from "@/views/components/icons/magnifier"
+import { MagnifierIcon } from "src/views/components/icons/magnifier"
 
 export const SearchControlComponent = () => {
   return (

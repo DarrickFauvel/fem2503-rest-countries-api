@@ -1,8 +1,8 @@
-import { MoonIcon } from "@/views/components/icons/moon"
-import { SearchControlComponent } from "@/views/components/search-control"
-import { SelectControlComponent } from "@/views/components/select-control"
-import { SpinnerIcon } from "@/views/components/icons/spinner"
-import { localStorageHeadScript } from "@/utils/localstorage-head-script"
+import { MoonIcon } from "src/views/components/icons/moon"
+import { SearchControlComponent } from "src/views/components/search-control"
+import { SelectControlComponent } from "src/views/components/select-control"
+import { SpinnerIcon } from "src/views/components/icons/spinner"
+import { localStorageHeadScript } from "src/views/utils/localstorage-head-script"
 
 export const Home = () => {
   return (
