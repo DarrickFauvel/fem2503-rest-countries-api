@@ -5,11 +5,9 @@
     "jsxImportSource": "hono/jsx",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"],
+      "@/src/*": ["/*"],
       "views/*": ["views/*"],
-      "components/*": ["views/components/*"],
-      "types/*": ["types/*"],
-      "utils/*": ["utils/*"]
+      "components/*": ["views/components/*"]
     },
     "moduleResolution": "node10",
     "module": "ESNext",
