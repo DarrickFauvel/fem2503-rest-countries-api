@@ -1,11 +1,11 @@
 {
   "name": "fem2503-rest-countries-api",
   "scripts": {
-    "server": "bun run --hot src/app.ts",
+    "server": "bun run --hot src/app.tsx",
     "tailwind": "npx @tailwindcss/cli -i ./src/public/css/input.css -o ./src/public/css/output.css --watch",
     "build": "npx @tailwindcss/cli -i ./src/public/css/input.css -o ./src/public/css/output.css",
     "dev": "concurrently 'bun tailwind' 'bun server'",
-    "start": "bun run src/app.ts"
+    "start": "bun run src/app.tsx"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.0.12",

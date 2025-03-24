@@ -1,4 +1,4 @@
-import { CountryProps } from "@/types/country"
+import { CountrySummaryProps } from "src/models/types/country"
 
 export const CountryItemComponent = (country: CountrySummaryProps) => {
   const htmlContent = (

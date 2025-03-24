@@ -1,10 +1,12 @@
 import { MoonIcon } from "src/views/components/icons/moon"
-import { SearchControlComponent } from "src/views/components/search-control"
-import { SelectControlComponent } from "src/views/components/select-control"
-import { SpinnerIcon } from "src/views/components/icons/spinner"
+import { PropsWithChildren } from "hono/jsx"
 import { localStorageHeadScript } from "src/views/utils/localstorage-head-script"
 
-export const Home = () => {
+type LayoutProps = {
+  title: string
+}
+
+export const Layout = ({ title, children }: PropsWithChildren<LayoutProps>) => {
   return (
     <html lang="en">
       <head>
@@ -14,7 +16,7 @@ export const Home = () => {
         <script src="/public/js/htmx.min.js" defer></script>
         <script src="/public/js/script.js" defer></script>
         <link rel="stylesheet" href="/public/css/output.css" />
-        <title>REST Countries API</title>
+        <title>{title} | REST Countries API</title>
       </head>
 
       <body class="bg-(--theme-light-bg) dark:bg-(--theme-dark-bg) text-neutral-900 dark:text-white flex flex-col">
@@ -24,22 +26,17 @@ export const Home = () => {
             class="flex items-center gap-2 cursor-pointer"
             hx-on:click="toggleTheme()"
           >
-            {MoonIcon()}
+            <MoonIcon />
+
             <span class="text-xs font-semibold text-nowrap">Dark Mode</span>
           </button>
         </header>
 
         <main class="px-4 py-6 flex flex-col items-center gap-8">
-          {SearchControlComponent()}
-
-          {SelectControlComponent()}
-
-          <section id="results"></section>
-
-          <div id="spinner" class="htmx-indicator">
-            {SpinnerIcon()}
-          </div>
+          {children}
         </main>
+
+        <footer></footer>
       </body>
     </html>
   )
