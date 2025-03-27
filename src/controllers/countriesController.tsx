@@ -1,16 +1,13 @@
-import { CountriesListView, } from "src/views/CountriesListView"
+import { CountryListView } from "src/views/partials/country-list-view"
+import { DetailView } from "src/views/pages/detail-view"
+import { FilterType } from "src/models/types/country"
 import { countriesCollection } from "src/models/countriesModel"
 
-//     const countries = await getCountriesByRegion(region)
-//     const countryItems = countries
-//       .map((country) => CountryItemComponent(country))
-//       .join("")
+export const renderCountryListView = (filter: FilterType) => {
+  return <CountryListView filter={filter} />
+}
 
-//     return c.html(`<ul class="flex flex-col gap-10 px-12">${countryItems}</ul>`)
-//   }
-
-export const renderCountriesListView = async () => {
-  const allCountries = countriesCollection
-
-  return CountriesListView(allCountries)
+export const renderCountryDetailView = (code) => {
+  const foundCountry = countriesCollection.find(country => country.alpha3Code.toLowerCase() === code.toLowerCase())
+  return <DetailView country={country} />
 }

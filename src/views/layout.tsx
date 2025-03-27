@@ -1,4 +1,4 @@
-import { MoonIcon } from "src/views/components/icons/moon"
+import { MoonIcon } from "src/views/partials/icons/moon"
 import { PropsWithChildren } from "hono/jsx"
 import { localStorageHeadScript } from "src/views/utils/localstorage-head-script"
 

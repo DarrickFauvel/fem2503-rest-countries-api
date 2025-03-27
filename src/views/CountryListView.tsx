@@ -1,7 +1,7 @@
-import { CountryItemComponent } from "src/views/components/country-item"
+import { CountryItemView } from "src/views/partials/country-item-view"
 import { CountryProps } from "src/models/types/country"
 
-export const CountriesListView = (countries: CountryProps[]) => {
+export const CountryListView = (countries) => {
   // console.log(countries)
   // const { region } = c.req.query()
 
@@ -72,9 +72,9 @@ export const CountriesListView = (countries: CountryProps[]) => {
   // }
 
   // const countries = await getCountriesByRegion(region)
-  const countryItems = countries
-    .map((country) => CountryItemComponent(country))
+  const countryListItems = countries
+    .map((country) => CountryItemView(country))
     .join("")
 
-  return /* html */(`<ul class="flex flex-col gap-10 px-12">${countryItems}</ul>`)
+  return /* html */ `<ul class="flex flex-col gap-10 px-12">${countryListItems}</ul>`
 }

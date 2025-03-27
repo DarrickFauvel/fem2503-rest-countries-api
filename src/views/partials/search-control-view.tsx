@@ -1,6 +1,6 @@
-import { MagnifierIcon } from "src/views/components/icons/magnifier"
+import { MagnifierIcon } from "src/views/partials/icons/magnifier"
 
-export const SearchControlComponent = () => {
+export const SearchControlView = () => {
   return (
     <div
       class="bg-(--theme-light-fg) dark:bg-(--theme-dark-fg) px-8 py-4 rounded-[5px] flex gap-6 shadow-(--search-shadow) w-full"
@@ -16,7 +16,7 @@ export const SearchControlComponent = () => {
         id="search-input"
         hx-get="/countries/search"
         hx-on:keyup="clearSelectControl()"
-        hx-trigger="input changed delay:500ms, keyup[key=='Enter']"
+        hx-trigger="input changed delay:500ms, keyup[key=='Enter'], revealed"
         hx-target="#results"
       />
     </div>

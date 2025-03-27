@@ -23,6 +23,7 @@ export const allCountriesArray = await allCountriesParsed.map(
     region,
     subregion,
     topLevelDomain,
+    alpha3Code
   }: CountryProps) => ({
     borders,
     capital,
@@ -35,6 +36,7 @@ export const allCountriesArray = await allCountriesParsed.map(
     region,
     subregion,
     topLevelDomain,
+    alpha3Code
   })
 )
 

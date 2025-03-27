@@ -1,10 +1,12 @@
-import { countriesCollection, renderSearchResults } from "src/models/countriesModel"
+import {
+  countriesCollection,
+  renderSearchResults,
+} from "src/models/countriesModel"
 
-import { CountryItemComponent } from "src/views/components/country-item"
-import { CountryProps } from "src/models/types/country"
+import { DetailView } from "src/views/pages/detail-view"
+import { FilterType } from "src/models/types/country"
 import { Hono } from "hono"
-import { renderCountriesView } from "src/controllers/countriesController"
-import { renderHomeView } from "src/controllers/homeController"
+import { renderCountryListView } from "src/controllers/countriesController"
 
 const countriesRoute = new Hono()
 
@@ -74,19 +76,31 @@ const countriesRoute = new Hono()
 //   return filteredCountries
 // }
 
-countriesRoute.get("/", (c) => c.html(renderCountriesView()))
+countriesRoute.get("/", (c) => c.html(renderCountryListView()))
+
+countriesRoute.get("/:code", (c) => {
+  const { code } = c.req.param()
+  console.log("country code:", code)
+  return c.html(<DetailView code={code} />)
+})
 
 countriesRoute.get("/search", async (c) => {
-  const query = c.req.query("q") || "";
-  const region = c.req.query("region") || "";
+  const query = c.req.query("q") || ""
+  const region = c.req.query("region") || ""
 
-  const filter: any = {};
-  if (query) filter.name = new RegExp(query, "i");
-  if (region) filter.region = region;
+  const filter: FilterType = { type: "", value: "" }
+  if (query) {
+    filter.type = "query"
+    filter.value = query.toLowerCase()
+  } else if (region) {
+    filter.type = "region"
+    filter.value = region.toLowerCase()
+  } else {
+    filter.type = "none"
+    filter.value = ""
+  }
 
-  const results = await countriesCollection.find(filter).toArray();
-  console.log(results)
-  return c.html(renderCountriesView());
+  return c.html(renderCountryListView(filter))
 })
 
 export default countriesRoute

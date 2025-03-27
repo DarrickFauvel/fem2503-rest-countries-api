@@ -1,4 +1,4 @@
-export const SelectControlComponent = () => {
+export const SelectControlView = () => {
   const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"]
 
   const createRegionOptions = () => {

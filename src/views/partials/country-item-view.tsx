@@ -1,8 +1,11 @@
-import { CountrySummaryProps } from "src/models/types/country"
-
-export const CountryItemComponent = (country: CountrySummaryProps) => {
-  const htmlContent = (
-    <li class="animate-fade bg-(--theme-light-fg) dark:bg-(--theme-dark-bg) rounded-[5px] overflow-hidden shadow-(--card-shadow) cursor-pointer hover:outline-4 dark:hover:outline-(--theme-dark-fg) group">
+export const CountryItemView = ({ country }) => {
+  return (
+    <li
+      class="animate-fade bg-(--theme-light-fg) dark:bg-(--theme-dark-bg) rounded-[5px] overflow-hidden shadow-(--card-shadow) cursor-pointer hover:outline-4 dark:hover:outline-(--theme-dark-fg) group"
+      hx-get={`/countries/${country.alpha3Code.toLowerCase()}`}
+      hx-trigger="click"
+      hx-swap="outerHTML"
+    >
       <div>
         <img
           class="group-hover:scale-110 transition duration-500"
@@ -30,6 +33,4 @@ export const CountryItemComponent = (country: CountrySummaryProps) => {
       </div>
     </li>
   )
-
-  return htmlContent
 }

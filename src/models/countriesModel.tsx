@@ -1,38 +1,51 @@
-import { CountryItemComponent } from "src/views/components/country-item";
-import { CountrySummaryProps } from "src/models/types/country";
-import { allCountriesArray } from "src/db";
+import { CountrySummaryProps } from "src/models/types/country"
+import { allCountriesArray } from "src/db"
 
 export const countriesCollection = allCountriesArray
 
-export const renderSearchResults = async (c) => {
-  const formData = await c.req.formData()
-  console.log(formData)
-  const searchQuery = formData.get("search")
+// export const renderSearchResults = async (c) => {
+//   const formData = await c.req.formData()
+//   console.log(formData)
+//   const searchQuery = formData.get("search")
 
-  const countries = allCountriesArray.map(
-    ({ name, population, region, capital, flag }: CountrySummaryProps) => ({
-      name,
-      population,
-      region,
-      capital,
-      flag,
-    })
-  )
+//   const countries = allCountriesArray.map(
+//     ({ name, population, region, capital, flag }: CountrySummaryProps) => ({
+//       name,
+//       population,
+//       region,
+//       capital,
+//       flag,
+//     })
+//   )
 
-  if (typeof searchQuery === "string") {
-    const filteredCountries = countries.filter((country:CountrySummaryProps) => {
-      return country.name
-        .toLowerCase()
-        .includes(searchQuery?.toString().toLowerCase())
-    })
+//   if (typeof searchQuery === "string") {
+//     const filteredCountries = countries.filter(
+//       (country: CountrySummaryProps) => {
+//         return country.name
+//           .toLowerCase()
+//           .includes(searchQuery?.toString().toLowerCase())
+//       }
+//     )
 
-    const countryItems = filteredCountries
-      .map((country) => CountryItemComponent(country))
-      .join("")
+//     const countryItems = filteredCountries
+//       .map((country) => CountryItemComponent(country))
+//       .join("")
 
-    return c.html(`<ul class="flex flex-col gap-10 px-12">${countryItems}</ul>`)
-  }
-}
+//     return c.html(`<ul class="flex flex-col gap-10 px-12">${countryItems}</ul>`)
+//   }
+// }
+
+// export const getAllCountrySummaries = () => {
+//   return countriesCollection.map(
+//     ({ name, population, region, capital, flag }: CountrySummaryProps) => ({
+//       name,
+//       population,
+//       region,
+//       capital,
+//       flag,
+//     })
+//   )
+// }
 
 // import { CountryProps } from "src/models/types/country"
 
