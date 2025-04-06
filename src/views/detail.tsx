@@ -2,9 +2,9 @@ import { BackButton } from "src/views/partials/back-button"
 import { Layout } from "src/views/layout"
 import { SpinnerIcon } from "src/views/partials/icons/spinner"
 
-export const DetailView = ({ country }) => {
+const DetailViewComponent = ({ country }) => {
   return (
-    <Layout title="Home">
+    <>
       <BackButton />
 
       <h1>
@@ -12,8 +12,12 @@ export const DetailView = ({ country }) => {
       </h1>
 
       <div id="spinner" class="htmx-indicator">
-        {SpinnerIcon()}
+        <SpinnerIcon />
       </div>
-    </Layout>
+    </>
   )
 }
+
+export const renderCountryDetail = (country) => (
+  <DetailViewComponent country={country} />
+)

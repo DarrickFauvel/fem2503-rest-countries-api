@@ -16,7 +16,7 @@ export const SearchControlView = () => {
         id="search-input"
         hx-get="/countries/search"
         hx-on:keyup="clearSelectControl()"
-        hx-trigger="input changed delay:500ms, keyup[key=='Enter'], revealed"
+        hx-trigger="input changed delay:500ms, keyup[key=='Enter']"
         hx-target="#results"
       />
     </div>

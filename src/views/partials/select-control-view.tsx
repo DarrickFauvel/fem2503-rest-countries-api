@@ -10,7 +10,7 @@ export const SelectControlView = () => {
       name="region"
       id="select-control"
       class="bg-(--theme-light-fg) dark:bg-(--theme-dark-fg) px-6 py-3.5 rounded-[5px] self-start"
-      hx-get="/countries/search"
+      hx-get="/countries/filter"
       hx-target="#results"
       hx-trigger="change"
       hx-indicator="#spinner"
