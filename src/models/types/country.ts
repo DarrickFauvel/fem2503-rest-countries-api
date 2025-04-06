@@ -10,6 +10,7 @@ export type CountryProps = {
   region: string
   subregion: string
   topLevelDomain: string[]
+  alpha3Code: string
 }
 
 export type CountrySummaryProps = {
@@ -32,4 +33,9 @@ export type CountryDetailProps = {
   region: string
   subregion: string
   topLevelDomain: string[]
+}
+
+export type FilterType = {
+  type: string
+  value: string
 }

@@ -1,4 +1,4 @@
-export const SelectControlComponent = () => {
+export const SelectControlView = () => {
   const regions = ["Africa", "Americas", "Asia", "Europe", "Oceania"]
 
   const createRegionOptions = () => {
@@ -10,9 +10,9 @@ export const SelectControlComponent = () => {
       name="region"
       id="select-control"
       class="bg-(--theme-light-fg) dark:bg-(--theme-dark-fg) px-6 py-3.5 rounded-[5px] self-start"
-      hx-get="/countries"
+      hx-get="/countries/filter"
       hx-target="#results"
-      hx-trigger="revealed, change"
+      hx-trigger="change"
       hx-indicator="#spinner"
       hx-on:change="clearSearchInput()"
     >
