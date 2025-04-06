@@ -4,7 +4,9 @@ export const CountryItemView = ({ country }) => {
       class="animate-fade bg-(--theme-light-fg) dark:bg-(--theme-dark-bg) rounded-[5px] overflow-hidden shadow-(--card-shadow) cursor-pointer hover:outline-4 dark:hover:outline-(--theme-dark-fg) group"
       hx-get={`/countries/${country.alpha3Code.toLowerCase()}`}
       hx-trigger="click"
-      hx-swap="outerHTML"
+      hx-target="main"
+      hx-swap="innerHTML"
+      hx-push-url="true"
     >
       <div>
         <img
