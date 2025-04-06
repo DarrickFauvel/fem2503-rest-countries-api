@@ -10,7 +10,6 @@ import { Hono } from "hono"
 const countriesRoute = new Hono()
 
 countriesRoute.get("/", async (c) => {
-  console.log("/countries endpoint")
   return c.html(renderAllCountriesListView())
 })
 
