@@ -10,7 +10,11 @@ export const HomeView = () => {
 
       <SelectControlView />
 
-      <section id="results" hx-get="/countries" hx-trigger="revealed"></section>
+      <section
+        id="results"
+        hx-get="/countries"
+        hx-trigger="revealed"
+      ></section>
 
       <div id="spinner" class="htmx-indicator">
         <SpinnerIcon />
