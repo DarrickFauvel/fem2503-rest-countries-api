@@ -3,7 +3,7 @@ import {
   handleSearch,
   renderAllCountriesListView,
   showCountryDetail,
-} from "src/controllers/countriesController"
+} from "src/controllers/countryController"
 
 import { Hono } from "hono"
 
