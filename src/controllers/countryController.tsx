@@ -3,7 +3,7 @@ import {
   getCountriesByRegion,
   getCountryByCode,
   searchCountriesByName,
-} from "src/models/countriesModel"
+} from "src/models/countryModel"
 
 import { Context } from "hono"
 import { CountryListView } from "src/views/partials/country-list-view"
