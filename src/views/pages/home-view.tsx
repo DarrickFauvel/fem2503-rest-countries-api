@@ -13,7 +13,7 @@ export const HomeView = () => {
       <section id="results" hx-get="/countries" hx-trigger="revealed"></section>
 
       <div id="spinner" class="htmx-indicator">
-        {SpinnerIcon()}
+        <SpinnerIcon />
       </div>
     </Layout>
   )
