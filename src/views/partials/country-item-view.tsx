@@ -1,4 +1,6 @@
-export const CountryItemView = ({ country }) => {
+import { CountryProps } from "src/models/types/country"
+
+export const CountryItemView = ({ country }: {country: CountryProps}) => {
   return (
     <li
       class="animate-fade bg-(--theme-light-fg) dark:bg-(--theme-dark-bg) rounded-[5px] overflow-hidden shadow-(--card-shadow) cursor-pointer hover:outline-4 dark:hover:outline-(--theme-dark-fg) group"
@@ -12,7 +14,7 @@ export const CountryItemView = ({ country }) => {
         <img
           class="group-hover:scale-110 transition duration-500"
           src={country.flag}
-          alt=""
+          alt={`${country.name} flag`}
           loading="lazy"
         />
       </div>
