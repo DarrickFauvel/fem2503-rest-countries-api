@@ -12,7 +12,7 @@ export const CountryItemView = ({ country }) => {
         <img
           class="group-hover:scale-110 transition duration-500"
           src={country.flag}
-          alt=""
+          alt={`${country.name} flag`}
           loading="lazy"
         />
       </div>
