@@ -31,6 +31,7 @@ export const handleRegionFilter = async (c: Context) => {
 export const showCountryDetail = async (c: Context) => {
   const code = c.req.param("code")
   const country = await getCountryByCode(code)
+  console.table(country)
 
   if (!country) {
     return c.notFound()
