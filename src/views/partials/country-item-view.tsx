@@ -1,6 +1,6 @@
 import { CountryProps } from "src/models/types/country"
 
-export const CountryItemView = ({ country }: {country: CountryProps}) => {
+export const CountryItemView = ({ country }: { country: CountryProps }) => {
   return (
     <li
       class="animate-fade bg-(--theme-light-fg) dark:bg-(--theme-dark-bg) rounded-[5px] overflow-hidden shadow-(--card-shadow) cursor-pointer hover:outline-4 dark:hover:outline-(--theme-dark-fg) group"
@@ -23,15 +23,15 @@ export const CountryItemView = ({ country }: {country: CountryProps}) => {
         <ul class="py-4 text-sm flex flex-col gap-2">
           <li>
             <span class="font-semibold">Population:</span>{" "}
-            <span class="font-light">{country.population}</span>
+            <span class="font-light">{country.population ?? "--none--"}</span>
           </li>
           <li>
             <span class="font-semibold">Region:</span>{" "}
-            <span class="font-light">{country.region}</span>
+            <span class="font-light">{country.region ?? "--none--"}</span>
           </li>
           <li>
             <span class="font-semibold">Capital:</span>{" "}
-            <span class="font-light">{country.capital}</span>
+            <span class="font-light">{country.capital ?? "--none--"}</span>
           </li>
         </ul>
       </div>
